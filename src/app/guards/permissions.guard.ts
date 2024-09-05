@@ -13,6 +13,7 @@ export const permissionsGuard: CanActivateFn = (route, state) => {
   const router=inject(Router);
   if(!usersService.getCurrentUser()===null){
     router.navigate(['/login']);
+  
     return false;
   }
   return usersService.getCurrentUser()!==null;
