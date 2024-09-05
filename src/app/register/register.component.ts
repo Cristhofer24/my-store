@@ -25,6 +25,7 @@ export class RegisterComponent {
     this.usersService.register(this.form.value).then
     ((response)=>{
       console.log(response);
+      window.location.href = '/login';
     }).catch(error=>console.log(error))
     }
 
