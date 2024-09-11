@@ -2,14 +2,14 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartItemComponent } from './ui/cart-item/cart-item.component';
 import { CartStateService } from '../component/data-access/cart-state.service';
 import { ProductItemCart } from '../component/interface/product.interface';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { PaypalService } from '../Services/paypal/paypal.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CartItemComponent, CurrencyPipe],
+  imports: [CartItemComponent, CurrencyPipe,CommonModule],
   templateUrl: './cart.component.html',
   styles: ``,
 })
@@ -62,4 +62,17 @@ export default class CartComponent implements OnInit{
       quantity: product.quantity - 1,
     });
   }
+
+
+  //modal
+  msj=false;
+
+  click(){
+    this.msj=true;
+  }
+
+  close(){
+    this.msj=false;
+  }
+
 }
