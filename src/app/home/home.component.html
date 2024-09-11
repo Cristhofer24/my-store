@@ -1,44 +1,43 @@
 <h1 style="color: green; font-size: 30px; font-weight: bold; padding: 20px;">Hola Bienvenidos a mi Tienda</h1>
 
 <div id="default-carousel" class="relative w-full" data-carousel="slide">
-    <!-- Carousel wrapper -->
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-        <!-- Item 1 -->
-        <div class="duration-700 ease-in-out" data-carousel-item>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8H0NhiT2pCyENALgsQlD9PdX_Pa6zkJLOjg&s" class="w-full h-full" alt="Batman">
-        </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeecJxNz1YSWt1OOMvvO9NfWb9zvGRLsOAaw&s" class="w-full h-full" alt="Fallout">
-        </div>
-        <!-- Item 3 -->
-        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="assets/img/kakashi.jpg" class="w-full h-full" alt="Kakashi">
-        </div>
+  <!-- Carousel wrapper -->
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <!-- Item 1 -->
+    <div class="carousel-item" [class.active]="activeIndex === 0">
+      <img src="https://m.media-amazon.com/images/I/71ytP3Pa6IL._AC_SL1500_.jpg" class="w-full h-full" alt="RTX">
     </div>
-
-    <!-- Slider indicators -->
-    <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+    <!-- Item 2 -->
+    <div class="carousel-item" [class.active]="activeIndex === 1">
+      <img src="https://america-retail.com/wp-content/uploads/2024/06/kia.jpg" class="w-full h-full" alt="KIA">
     </div>
+    <!-- Item 3 -->
+    <div class="carousel-item" [class.active]="activeIndex === 2">
+      <img src="https://static.nike.com/a/images/w_1920,c_limit/5a90a90e-6f7a-476c-84f4-1b913871d4cd/el-siguiente-salto-en-innovaci%C3%B3n-de-b%C3%A1squetbol-air-zoom-g-t-cut-2.jpg" class="w-full h-full" alt="Nike">
+    </div>
+  </div>
 
-    <!-- Slider controls -->
-    <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group" data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group" data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+    <button type="button" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-500" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0" (click)="prevSlide()"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-500" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1" (click)="nextSlide()"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-500" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+  </div>
+  <!-- Slider controls -->
+  <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group" (click)="prevSlide()">
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg group-hover:bg-gray-400 group-hover:shadow-2xl transition-all duration-300">
+      <svg class="w-6 h-6 text-black group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+      </svg>
+      <span class="sr-only">Previous</span>
+    </span>
+  </button>
+  <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group" (click)="nextSlide()">
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg group-hover:bg-gray-400 group-hover:shadow-2xl transition-all duration-300">
+      <svg class="w-6 h-6 text-black group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+      </svg>
+      <span class="sr-only">Next</span>
+    </span>
+  </button>
 </div>
