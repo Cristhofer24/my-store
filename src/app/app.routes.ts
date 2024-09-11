@@ -14,6 +14,7 @@ export const routes: Routes = [
   { path: 'cart', loadChildren: () => import('./cart/cart.routes'),...canActivate (()=>redirectUnauthorizedTo(['/login']))},
   { path: 'products',component:ProductListComponent, ...canActivate (()=>redirectUnauthorizedTo(['/login']))},
   { path: 'product/:id',component:ProductDetailComponent},
+
   // { path: 'dashboard',component:AdministradorComponent},
   { path: 'login',component:LoginComponent,canDeactivate: [warningGuard] },
   { path: 'register',component:RegisterComponent},
