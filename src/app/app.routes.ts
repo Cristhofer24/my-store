@@ -7,6 +7,7 @@ import ProductDetailComponent from './products/features/product-detail/product-d
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { warningGuard } from './guards/warning.guard';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+//import { UsersComponent } from './users/users.component';
 // import { AdministradorComponent } from './administrador/administrador.component';
 
 
@@ -16,7 +17,7 @@ export const routes: Routes = [
   { path: 'products',component:ProductListComponent, ...canActivate (()=>redirectUnauthorizedTo(['/login']))},
   { path: 'product/:id',component:ProductDetailComponent},
   { path: 'nosotros',component:NosotrosComponent},
-
+  //{ path: 'users',component:UsersComponent},
   // { path: 'dashboard',component:AdministradorComponent},
   { path: 'login',component:LoginComponent,canDeactivate: [warningGuard] },
   { path: 'register',component:RegisterComponent},
