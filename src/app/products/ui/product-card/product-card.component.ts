@@ -24,7 +24,7 @@ export class ProductCardComponent implements OnInit {
     this.loadProducts();
   }
   loadProducts(): void {
-    this.productosService.getProducts(this.currentPage).subscribe(
+    this.productosService.getProducts().subscribe(
       (products) => {
         this.products = products;
       },

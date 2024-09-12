@@ -12,9 +12,9 @@ const LIMIT = 5;
 export class ProductsService{
   constructor(private firestore:Firestore){}
 
-  getProducts(page: number): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     const productsCollection = collection(this.firestore, 'products');
-    const productsQuery = query(productsCollection, limit(page * LIMIT));
+    const productsQuery = query(productsCollection, limit(LIMIT));
 
     return collectionData(productsQuery, { idField: 'id' }) as Observable<Product[]>;
   }

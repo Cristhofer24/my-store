@@ -22,7 +22,7 @@ export class ProductsStateService {
 
   loadProducts$=this.changePage$.pipe(
     startWith(1),
-    switchMap((page)=> this.productService.getProducts(page)),
+    switchMap(()=> this.productService.getProducts()),
     map((products) => ({ products, status: 'success' as const })),
     catchError(()=>{
       return of({
