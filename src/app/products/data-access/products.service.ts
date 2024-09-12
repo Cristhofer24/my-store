@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../component/interface/product.interface';
 
 
-const LIMIT = 5;
+const LIMIT = 10;
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService{

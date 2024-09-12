@@ -19,10 +19,18 @@
         @for(product of productsState.state().products; track product){
 
         <app-product-card class="block" [product]="product" (addToCart)="addToCart($event)"  style="color: aqua;" />
+        
 
         }
 
       </div>
+
+      <!-- <div class="grid grid-cols-[repeat(4,300px)] gap-6">
+        <ng-container *ngFor="let product of productsState.state().products; let i = index">
+          <app-product-card class="block" [product]="product" (addToCart)="addToCart($event)" style="color: aqua;"></app-product-card>
+        </ng-container>
+      </div> -->
+
 
     }
   }
