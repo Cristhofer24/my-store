@@ -45,7 +45,7 @@ export default class CartComponent implements OnInit{
 
   state = inject(CartStateService).state;
 
-  onRemove(id: number) {
+  onRemove(id: string) {
     this.state.remove(id);
   }
 

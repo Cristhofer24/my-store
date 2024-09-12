@@ -34,12 +34,12 @@ push(response:any){
       }
 
 //create almacena los productos
-      addProduct(product: Product): Promise<any> {
+      // addProduct(product: Product): Promise<any> {
 
-        const productRef = collection(this.firestore, 'products');
+      //   const productRef = collection(this.firestore, 'products');
 
-        return addDoc(productRef, product);
-      }
+      //   return addDoc(productRef, product);
+      // }
 
 
 
