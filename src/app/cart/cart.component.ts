@@ -1,3 +1,4 @@
+import { EmailService } from './../Services/email/email.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { CartItemComponent } from './ui/cart-item/cart-item.component';
 import { CartStateService } from '../component/data-access/cart-state.service';
@@ -15,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export default class CartComponent implements OnInit{
 
-  constructor(private paypalService: PaypalService, private route: ActivatedRoute) { }
+  constructor(private paypalService: PaypalService, private route: ActivatedRoute,private emailService: EmailService) { }
 
   ngOnInit() {
     this.route.queryParams
@@ -63,7 +64,15 @@ export default class CartComponent implements OnInit{
     });
   }
 
+  onSendEmail(): void {
+    this.emailService.sendEmail({
+      name:'My-Store',
+      email: 'hancellsud@gmail.com',
+      //hancellsud@gmail.com
 
+      htmlContent: `<h1>My-Store ${'Su Pago ha sido realizado'}</h1>`
+    }).subscribe(response => console.log(response));
+  }
   //modal
   msj=false;
 
