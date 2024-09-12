@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmailService {
   private apiUrl = 'https://api.brevo.com/v3/smtp/email';
-  private apiKey = '';
+  private apiKey = ' ';
 
   constructor(private http: HttpClient) {}
 
