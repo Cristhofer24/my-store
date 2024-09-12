@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Product } from './../../../component/interface/product.interface';
 import { Component, inject } from '@angular/core';
 import { ProductsStateService } from '../../data-access/products-state.service';
