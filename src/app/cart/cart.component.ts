@@ -30,13 +30,17 @@ export default class CartComponent implements OnInit{
   pay(): void {
     this.paypalService.getAccessToken()
       .subscribe(accessToken => {
-        this.paypalService.createWebProfile(accessToken.access_token, `Pago-${this.state.price}`)
+        this.paypalService.createWebProfile(accessToken.access_token, `Pago-${Math.random()}`)
           .subscribe(webProfile => {
+            console.log(this.state.price.toString().split(":")[1].slice(1, -1));
+
             this.paypalService.createPayment(
               accessToken.access_token,
               webProfile.id,
-              "http://localhost:4200/welcome",
+              "http://localhost:4200/home",
               "http://localhost:4200/login",
+              this.state.price.toString().split(":")[1].slice(1, -1),
+              "Productos del carrito"
             ).subscribe(payment => {
               console.log(payment.id);
               window.location.href = payment.links[1].href;

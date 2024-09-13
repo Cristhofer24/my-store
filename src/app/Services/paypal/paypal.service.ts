@@ -39,45 +39,42 @@ export interface Payment {
       shipping_address: {}
     }
   }
-  transactions: [
-    {
-      amount: {
-        total: string;
-        currency: string;
-        details: {
-          subtotal: string;
-          tax: string;
-          shipping: string;
-        }
-      }
-      description: string;
-      item_list: {
-        items: [
-          {
-            name: string;
-            sku: string;
-            price: string;
-            currency: string;
-            quantity: string;
-          }
-        ],
-        shipping_address: {
-          recipient_name: string;
-          line1: string;
-          line2: string;
-          city: string;
-          state: string;
-          postal_code: string;
-          country_code: string;
-          phone: string;
-        }
+  transactions:
+  {
+    amount: {
+      total: string;
+      currency: string;
+      details: {
+        subtotal: string;
+        tax: string;
+        shipping: string;
       }
     }
-  ],
+    description: string;
+    item_list: {
+      items: {
+        name: string;
+        sku: string;
+        price: string;
+        currency: string;
+        quantity: string;
+      }[],
+      shipping_address: {
+        recipient_name: string;
+        line1: string;
+        line2: string;
+        city: string;
+        state: string;
+        postal_code: string;
+        country_code: string;
+        phone: string;
+      }
+    }
+  }[],
   links: {
-      href: string;
-      rel: string;
-      method: string;
+    href: string;
+    rel: string;
+    method: string;
   }[],
 }
 
@@ -133,7 +130,14 @@ export class PaypalService {
     return this.http.post<WebProfile>(this.urlPaymentExperience, body, { headers });
   }
 
-  createPayment(accessToken: string, experience_profile_id: string, return_url: string, cancel_url: string): Observable<Payment> {
+  createPayment(
+    accessToken: string,
+    experience_profile_id: string,
+    return_url: string,
+    cancel_url: string,
+    total: string,
+    name: string,
+  ): Observable<Payment> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${accessToken}`
@@ -146,12 +150,12 @@ export class PaypalService {
       },
       transactions: [{
         amount: {
-          currency: 'DKK',
-          total: '41.15',
+          currency: 'USD',
+          total,
           details: {
-            shipping: '11',
-            subtotal: '30',
-            tax: '0.15'
+            shipping: '0',
+            subtotal: total,
+            tax: '0'
           }
         },
         payee: {
@@ -161,19 +165,12 @@ export class PaypalService {
         item_list: {
           items: [
             {
-              name: 'Basketball Team Jersey',
-              quantity: '5',
-              price: '3',
-              sku: '1',
-              currency: 'DKK'
-            },
-            {
-              name: 'Sequined Shirt',
+              name,
               quantity: '1',
-              price: '15',
-              sku: 'product34',
-              currency: 'DKK'
-            }
+              price: total,
+              sku: '1',
+              currency: 'USD'
+            },
           ],
           shipping_address: {
             recipient_name: 'Betsy customer',
