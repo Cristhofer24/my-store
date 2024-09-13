@@ -1,3 +1,4 @@
+
 import { EmailService } from './../Services/email/email.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { CartItemComponent } from './ui/cart-item/cart-item.component';
@@ -15,6 +16,8 @@ import { ActivatedRoute } from '@angular/router';
   styles: ``,
 })
 export default class CartComponent implements OnInit{
+  state = inject(CartStateService).state;
+
 
   constructor(private paypalService: PaypalService, private route: ActivatedRoute,private emailService: EmailService) { }
 
@@ -27,7 +30,7 @@ export default class CartComponent implements OnInit{
   pay(): void {
     this.paypalService.getAccessToken()
       .subscribe(accessToken => {
-        this.paypalService.createWebProfile(accessToken.access_token, `Pago-${Math.random()}`)
+        this.paypalService.createWebProfile(accessToken.access_token, `Pago-${this.state.price}`)
           .subscribe(webProfile => {
             this.paypalService.createPayment(
               accessToken.access_token,
@@ -44,7 +47,7 @@ export default class CartComponent implements OnInit{
 
 ///carrito con cuenta total
 
-  state = inject(CartStateService).state;
+
 
   onRemove(id: string) {
     this.state.remove(id);
@@ -65,14 +68,15 @@ export default class CartComponent implements OnInit{
   }
 
   onSendEmail(): void {
+    const price = this.state.price.toString();
+    console.log(price);
     this.emailService.sendEmail({
-      name:'My-Store',
-      email: 'hancellsud@gmail.com',
-      //hancellsud@gmail.com
-
-      htmlContent: `<h1>My-Store ${'Su Pago ha sido realizado'}</h1>`
+      name: 'My-Store',
+      email: 'cristhofer.elian.gramal@gmail.com',
+      htmlContent: `<h1>My-Store le informa que su Pago de $${price} ha sido exitoso</h1>`
     }).subscribe(response => console.log(response));
   }
+
   //modal
   msj=false;
 

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class EmailService {
   private apiUrl = 'https://api.brevo.com/v3/smtp/email';
-  private apiKey = ' ';
+  private apiKey = '';
 
   constructor(private http: HttpClient) {}
 
@@ -20,7 +20,7 @@ export class EmailService {
     const body = {
       sender: {
         name: 'My-Store',
-        email: 'no-reply@clases.com',
+        email: 'no-reply@mystore.com',
       },
       to: [
         {
@@ -29,7 +29,7 @@ export class EmailService {
         },
       ],
       htmlContent,
-      subject: 'Hola',
+      subject: 'My-Store Notificación',
     };
 
     return this.http.post(this.apiUrl, body, { headers });

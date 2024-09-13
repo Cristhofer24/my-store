@@ -61,11 +61,15 @@
               </dd>
             </dl>
           </div>
-          <div class="flex justify-center m-5">
-          <button
-            (click)="pay() ;click(); onSendEmail()"
+
+         <div class="flex justify-center m-5" >
+
+            <button
+            (click)="onSendEmail(); click() ;pay()"
             class="flex w-full items-center justify-center rounded-lg bg-green-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >Pagar</button>
+
+
             <!-- <---Modal-->
             <div *ngIf="msj" id="successModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
               <div class="relative p-4 w-full max-w-md h-full md:h-auto">
