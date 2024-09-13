@@ -72,7 +72,7 @@ export default class CartComponent implements OnInit{
   }
 
   onSendEmail(): void {
-    const price = this.state.price.toString();
+    const price = this.state.price.toString().split(":")[1].slice(1, -1);
     console.log(price);
     this.emailService.sendEmail({
       name: 'My-Store',
